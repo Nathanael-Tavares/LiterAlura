@@ -105,8 +105,18 @@ public class Principal {
             livro.setAutor(autorExistente);
         }
 
+        var livros = livroRepository.findAll();
+        boolean livroJaNoBanco= false;
+        for (Livro l : livros) {
+            if (l.getTitulo().equals(livro.getTitulo())){
+                livroJaNoBanco=true;
+            }
+        }
+        if(!livroJaNoBanco){
+            livroRepository.save(livro);
+        }
 
-        livroRepository.save(livro);
+
 
     }
 
